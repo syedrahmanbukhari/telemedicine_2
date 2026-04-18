@@ -109,19 +109,34 @@ backToTop.addEventListener('click', () => {
 const form = document.getElementById('appointmentForm');
 const formSuccess = document.getElementById('formSuccess');
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const btn = form.querySelector('button[type="submit"]');
   btn.textContent = 'Sending...';
   btn.disabled = true;
 
-  setTimeout(() => {
-    formSuccess.classList.remove('hidden');
-    form.reset();
-    btn.textContent = 'Book Appointment Now';
-    btn.disabled = false;
-    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }, 1200);
+  const data = new FormData(form);
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      formSuccess.classList.remove('hidden');
+      form.reset();
+      formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else {
+      alert('Something went wrong. Please try again or call us directly.');
+    }
+  } catch (err) {
+    alert('Network error. Please try again.');
+  }
+
+  btn.textContent = 'Book Appointment Now';
+  btn.disabled = false;
 });
 
 // ===== Smooth Scroll for all anchor links =====
