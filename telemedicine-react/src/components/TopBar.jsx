@@ -18,7 +18,7 @@ export default function TopBar() {
       </div>
       <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center gap-2">
         <a href="#self-pay"
-          className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 px-4 py-1.5 rounded-full text-sm font-bold transition-all duration-300 hover:scale-105 shadow-md hidden sm:block">
+          className="bg-[#1a6fb5] hover:bg-[#0d4a8a] text-white px-4 py-1.5 rounded-full text-sm font-bold transition-all duration-300 hover:scale-105 shadow-md hidden sm:block">
           💳 Self-Pay
         </a>
         <a href="#appointment"

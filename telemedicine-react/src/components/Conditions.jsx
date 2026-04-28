@@ -41,7 +41,7 @@ export default function Conditions() {
 function ConditionItem({ c }) {
   const ref = useReveal()
   return (
-    <div ref={ref} className="reveal bg-gray-50 hover:bg-blue-50 border border-gray-100 hover:border-[#1a6fb5]/30 rounded-xl p-4 flex items-center gap-3 transition-all duration-300 hover:shadow-md hover:-translate-y-1 cursor-default">
+    <div ref={ref} className="reveal condition-item bg-gray-50 border border-gray-100 rounded-xl p-4 flex items-center gap-3 cursor-default">
       <span className="text-2xl">{c.icon}</span>
       <span className="text-gray-700 font-medium text-sm">{c.name}</span>
     </div>

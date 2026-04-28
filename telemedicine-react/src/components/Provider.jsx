@@ -25,7 +25,7 @@ export default function Provider() {
         {/* Trust badges */}
         <div ref={badgeRef} className="reveal grid grid-cols-2 md:grid-cols-4 gap-4 mb-14">
           {trustBadges.map(b => (
-            <div key={b.label} className="bg-white/90 backdrop-blur rounded-xl p-4 text-center shadow-md border border-white">
+            <div key={b.label} className="trust-badge bg-white/90 backdrop-blur rounded-xl p-4 text-center shadow-md border border-white">
               <div className="text-3xl mb-2">{b.icon}</div>
               <div className="font-bold text-gray-800 text-sm">{b.label}</div>
               <div className="text-gray-500 text-xs">{b.sub}</div>

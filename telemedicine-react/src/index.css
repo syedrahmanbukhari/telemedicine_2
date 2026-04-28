@@ -5,12 +5,14 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
+/* ===== Hero BG ===== */
 .hero-bg {
   background: url('/hero-bg.png') center center / cover no-repeat;
 }
 
+/* ===== Keyframes ===== */
 @keyframes fadeInLeft {
-  from { opacity: 0; transform: translateX(-50px); }
+  from { opacity: 0; transform: translateX(-60px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 @keyframes fadeInUp {
@@ -19,29 +21,42 @@ body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
 }
 @keyframes floatY {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-8px); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes pulse-blue {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(26,111,181,0.4); }
+  50%       { box-shadow: 0 0 0 14px rgba(26,111,181,0); }
 }
 @keyframes pulse-green {
   0%, 100% { box-shadow: 0 0 0 0 rgba(46,204,113,0.4); }
-  50%       { box-shadow: 0 0 0 12px rgba(46,204,113,0); }
+  50%       { box-shadow: 0 0 0 14px rgba(46,204,113,0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 .animate-fadeInLeft  { animation: fadeInLeft 0.9s ease-out forwards; }
 .animate-float       { animation: floatY 3s ease-in-out infinite; }
 .pulse-cta           { animation: pulse-green 2.5s ease-in-out infinite; }
+.pulse-blue          { animation: pulse-blue 2.5s ease-in-out infinite; }
 
-/* Scroll reveal */
+/* ===== Scroll Reveal ===== */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(45px);
+  transition: opacity 0.75s cubic-bezier(0.4,0,0.2,1), transform 0.75s cubic-bezier(0.4,0,0.2,1);
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Nav underline */
+/* ===== Nav underline ===== */
 .nav-link { position: relative; }
 .nav-link::after {
   content: '';
@@ -53,30 +68,46 @@ body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
 }
 .nav-link:hover::after { width: 100%; }
 
-/* Service card */
+/* ===== Service Cards ===== */
 .service-card {
   border-top: 4px solid transparent;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
 }
-.service-card:hover { border-top-color: #2ecc71; }
+.service-card:hover {
+  border-top-color: #2ecc71;
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+.service-card .service-icon {
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.service-card:hover .service-icon {
+  transform: scale(1.2) rotate(8deg);
+}
 
-/* Insurance badge */
-.insurance-badge { transition: all 0.3s ease; }
-.insurance-badge:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+/* ===== Insurance Badges ===== */
+.insurance-badge {
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.insurance-badge:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
 
-/* Why list */
+/* ===== Why List ===== */
 .why-list-item {
   padding: 10px 16px;
   border-radius: 12px;
   transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
   background: transparent;
   border-left: 3px solid transparent;
+  cursor: default;
 }
 .why-list-item:hover {
-  background: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.8);
   backdrop-filter: blur(8px);
   border-left-color: #2ecc71;
-  transform: translateX(10px);
+  transform: translateX(12px);
   box-shadow: 0 4px 20px rgba(46,204,113,0.15);
 }
 .why-check {
@@ -88,22 +119,72 @@ body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
 }
 .why-list-item:hover .why-check {
   background: #2ecc71; color: white;
-  transform: scale(1.2) rotate(10deg);
-  box-shadow: 0 4px 12px rgba(46,204,113,0.4);
+  transform: scale(1.25) rotate(12deg);
+  box-shadow: 0 4px 14px rgba(46,204,113,0.45);
 }
 .why-text { transition: all 0.3s ease; color: #374151; }
 .why-list-item:hover .why-text { color: #1a6fb5; font-weight: 600; }
 
-/* Testimonial */
-.testimonial-card { transition: all 0.3s ease; }
-.testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
+/* ===== Testimonial Cards ===== */
+.testimonial-card {
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.testimonial-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+}
 
-/* FAQ */
-.faq-item.open .faq-icon { transform: rotate(45deg); }
+/* ===== Condition Items ===== */
+.condition-item {
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.condition-item:hover {
+  transform: translateY(-4px) scale(1.03);
+  background: #eff6ff;
+  border-color: rgba(26,111,181,0.3);
+  box-shadow: 0 8px 20px rgba(26,111,181,0.1);
+}
 
-/* Back to top */
-#backToTop.show { opacity: 1; pointer-events: all; }
+/* ===== Plan Cards ===== */
+.plan-card {
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.plan-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 24px 50px rgba(0,0,0,0.14);
+}
 
-/* Stats */
-.stat-item { transition: all 0.3s ease; }
-.stat-item:hover { transform: scale(1.05); }
+/* ===== Trust Badges ===== */
+.trust-badge {
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.trust-badge:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 28px rgba(26,111,181,0.15);
+}
+
+/* ===== FAQ ===== */
+.faq-item {
+  transition: all 0.3s ease;
+}
+.faq-item:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+/* ===== Stat Items ===== */
+.stat-item { transition: all 0.35s cubic-bezier(0.4,0,0.2,1); }
+.stat-item:hover { transform: scale(1.08); }
+
+/* ===== Back to Top ===== */
+.back-top-show { opacity: 1 !important; pointer-events: all !important; }
+
+/* ===== Buttons global hover ===== */
+a, button {
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .hero-bg { min-height: auto; }
+}

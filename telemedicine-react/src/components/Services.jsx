@@ -56,7 +56,7 @@ function ServiceCard({ s, delay }) {
   return (
     <div ref={ref} className="service-card reveal bg-white border border-gray-100 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
       style={{ transitionDelay: `${delay}s` }}>
-      <div className={`w-12 h-12 ${s.bg} rounded-xl flex items-center justify-center mb-4`}>
+      <div className={`service-icon w-12 h-12 ${s.bg} rounded-xl flex items-center justify-center mb-4`}>
         <svg className={`w-6 h-6 ${s.iconColor}`} fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
           {s.icon}
         </svg>
