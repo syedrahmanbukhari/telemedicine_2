@@ -17,14 +17,6 @@ export default function TopBar() {
         </span>
       </div>
       <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center gap-2">
-        <a href="#self-pay"
-          className="bg-[#1a6fb5] hover:bg-[#1565c0] text-white px-4 py-1.5 rounded-full text-sm font-bold transition-all duration-300 hover:scale-105 shadow-md hidden sm:block">
-          💳 Self-Pay
-        </a>
-        <a href="#appointment"
-          className="bg-[#27ae60] hover:bg-green-600 text-white px-5 py-1.5 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-md">
-          Book Now
-        </a>
       </div>
     </div>
   )
