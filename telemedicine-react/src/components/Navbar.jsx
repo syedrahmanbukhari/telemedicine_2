@@ -42,7 +42,7 @@ export default function Navbar() {
             </button>
           ))}
           <a href="#self-pay"
-            className="bg-[#1a6fb5] hover:bg-[#0d4a8a] text-white px-4 py-2 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 shadow-sm">
+            className="bg-[#1a6fb5] hover:bg-[#1565c0] text-white px-4 py-2 rounded-lg text-sm font-bold transition-all duration-300 hover:scale-105 shadow-sm">
             💳 Self-Pay
           </a>
           <a href="#appointment"

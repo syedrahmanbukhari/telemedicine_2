@@ -3,13 +3,13 @@ import { useReveal } from '../hooks/useReveal'
 const plans = [
   {
     tag: '🎉 PROMOTIONAL',
-    tagBg: 'bg-[#1565c0]', tagText: 'text-white',
+    tagBg: 'bg-[#2196f3]', tagText: 'text-white',
     title: 'New Patient Telemedicine Visit',
     price: '$120 – $150',
     desc: 'Comprehensive first visit with full health assessment',
     features: ['Full health evaluation', 'Treatment plan', 'Prescription if needed', 'Follow-up instructions'],
     link: 'https://square.link/u/newpatient',
-    btnColor: 'bg-[#1565c0] hover:bg-[#0d4a8a]',
+    btnColor: 'bg-[#2196f3] hover:bg-[#1565c0]',
     highlight: true,
   },
   {
@@ -31,7 +31,7 @@ const plans = [
     desc: 'Fast care for acute symptoms — available today',
     features: ['Same-day availability', 'Acute symptom care', 'Prescription if needed', 'Quick turnaround'],
     link: 'https://square.link/u/sameday',
-    btnColor: 'bg-[#1a6fb5] hover:bg-[#0d4a8a]',
+    btnColor: 'bg-[#1a6fb5] hover:bg-[#1565c0]',
     highlight: false,
   },
 ]
@@ -39,11 +39,11 @@ const plans = [
 function PlanCard({ p }) {
   const ref = useReveal()
   return (
-    <div ref={ref} className={`reveal plan-card bg-white rounded-2xl shadow-md overflow-hidden ${p.highlight ? 'ring-2 ring-[#1565c0]' : ''}`}>
+    <div ref={ref} className={`reveal plan-card bg-white rounded-2xl shadow-md overflow-hidden ${p.highlight ? 'ring-2 ring-[#2196f3]' : ''}`}>
       <div className={`px-6 py-2 text-xs font-bold ${p.tagBg} ${p.tagText}`}>{p.tag}</div>
       <div className="p-6">
         <h3 className="font-bold text-gray-800 text-lg mb-1">{p.title}</h3>
-        <div className="text-3xl font-black text-[#1565c0] mb-2">{p.price}</div>
+        <div className="text-3xl font-black text-[#2196f3] mb-2">{p.price}</div>
         <p className="text-gray-500 text-sm mb-4">{p.desc}</p>
         <ul className="space-y-2 mb-6">
           {p.features.map(f => (
@@ -68,7 +68,7 @@ export default function SelfPay() {
     <section id="self-pay" className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
       <div className="max-w-6xl mx-auto px-6">
         <div ref={titleRef} className="reveal text-center mb-6">
-          <span className="inline-block bg-[#1565c0] text-white text-sm font-bold px-4 py-1 rounded-full mb-4">
+          <span className="inline-block bg-[#2196f3] text-white text-sm font-bold px-4 py-1 rounded-full mb-4">
             💳 SELF-PAY OPTIONS
           </span>
           <h2 className="text-4xl font-black text-gray-800 mb-3">

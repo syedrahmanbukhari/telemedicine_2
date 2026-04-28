@@ -1,7 +1,7 @@
 export default function TopBar() {
   return (
     <div className="text-white text-sm py-2 px-6 flex items-center justify-center gap-8 relative"
-      style={{ background: 'linear-gradient(90deg, #1565c0 0%, #5dc41a 100%)' }}>
+      style={{ background: 'linear-gradient(90deg, #2196f3 0%, #5dc41a 100%)' }}>
       <div className="flex items-center gap-6">
         <span className="flex items-center gap-2 text-white/90">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -18,7 +18,7 @@ export default function TopBar() {
       </div>
       <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center gap-2">
         <a href="#self-pay"
-          className="bg-[#1a6fb5] hover:bg-[#0d4a8a] text-white px-4 py-1.5 rounded-full text-sm font-bold transition-all duration-300 hover:scale-105 shadow-md hidden sm:block">
+          className="bg-[#1a6fb5] hover:bg-[#1565c0] text-white px-4 py-1.5 rounded-full text-sm font-bold transition-all duration-300 hover:scale-105 shadow-md hidden sm:block">
           💳 Self-Pay
         </a>
         <a href="#appointment"
