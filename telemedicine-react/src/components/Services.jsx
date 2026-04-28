@@ -25,6 +25,30 @@ const services = [
     title: 'Medication Management',
     items: ['Prescription Refills', 'Adjustments', 'Monitoring'],
   },
+  {
+    bg: 'bg-teal-100', iconColor: 'text-teal-600',
+    icon: <path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />,
+    title: 'Weight Management',
+    items: ['Metabolic Care', 'Nutrition Guidance', 'GLP-1 Medications', 'Progress Monitoring'],
+  },
+  {
+    bg: 'bg-pink-100', iconColor: 'text-pink-600',
+    icon: <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />,
+    title: "Women's Health",
+    items: ['Hormonal Health', 'Contraception', 'Menopause Care', 'Prenatal Guidance'],
+  },
+  {
+    bg: 'bg-indigo-100', iconColor: 'text-indigo-600',
+    icon: <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />,
+    title: 'Mental Health Support',
+    items: ['Anxiety & Stress', 'Depression Screening', 'Behavioral Health', 'Referral Support'],
+  },
+  {
+    bg: 'bg-cyan-100', iconColor: 'text-cyan-600',
+    icon: <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />,
+    title: 'Chronic Care (CCM)',
+    items: ['Care Coordination', 'Monthly Check-ins', 'Specialist Referrals', 'Patient Education'],
+  },
 ]
 
 function ServiceCard({ s, delay }) {
@@ -60,11 +84,14 @@ export default function Services() {
           <p className="text-gray-500 text-lg">Comprehensive care from the comfort of your home</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          {services.map((s, i) => <ServiceCard key={s.title} s={s} delay={i * 0.1} />)}
+          {services.map((s, i) => <ServiceCard key={s.title} s={s} delay={i * 0.08} />)}
         </div>
-        <div ref={btnRef} className="reveal text-center">
-          <a href="#appointment" className="pulse-cta inline-block bg-[#27ae60] hover:bg-green-700 text-white font-bold px-10 py-4 rounded-lg text-lg shadow-lg transition-all duration-300 hover:scale-105">
-            Schedule Your Visit
+        <div ref={btnRef} className="reveal text-center flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#appointment" className="inline-block bg-[#27ae60] hover:bg-green-700 text-white font-bold px-10 py-4 rounded-lg text-lg shadow-lg transition-all duration-300 hover:scale-105">
+            📅 Schedule Your Visit
+          </a>
+          <a href="#self-pay" className="inline-block bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold px-10 py-4 rounded-lg text-lg shadow-lg transition-all duration-300 hover:scale-105">
+            💳 Self-Pay Options
           </a>
         </div>
       </div>

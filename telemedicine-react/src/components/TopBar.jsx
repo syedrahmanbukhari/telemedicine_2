@@ -16,10 +16,16 @@ export default function TopBar() {
           ctchouanang@telemedchecks.com
         </span>
       </div>
-      <a href="#appointment"
-        className="absolute right-6 top-1/2 -translate-y-1/2 bg-[#27ae60] hover:bg-green-600 text-white px-5 py-1.5 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-md">
-        Appointment
-      </a>
+      <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center gap-2">
+        <a href="#self-pay"
+          className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 px-4 py-1.5 rounded-full text-sm font-bold transition-all duration-300 hover:scale-105 shadow-md hidden sm:block">
+          💳 Self-Pay
+        </a>
+        <a href="#appointment"
+          className="bg-[#27ae60] hover:bg-green-600 text-white px-5 py-1.5 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-md">
+          Book Now
+        </a>
+      </div>
     </div>
   )
 }

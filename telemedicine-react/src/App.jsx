@@ -3,7 +3,9 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Insurance from './components/Insurance'
 import Services from './components/Services'
+import SelfPay from './components/SelfPay'
 import WhyUs from './components/WhyUs'
+import Conditions from './components/Conditions'
 import Provider from './components/Provider'
 import FAQs from './components/FAQs'
 import Appointment from './components/Appointment'
@@ -19,7 +21,9 @@ export default function App() {
       <Hero />
       <Insurance />
       <Services />
+      <SelfPay />
       <WhyUs />
+      <Conditions />
       <Provider />
       <FAQs />
       <Appointment />
