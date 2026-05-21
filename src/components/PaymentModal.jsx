@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import { PaymentForm, CreditCard, GooglePay, ApplePay } from 'react-square-web-payments-sdk'
-
-const APP_ID = import.meta.env.VITE_SQUARE_APP_ID || 'sandbox-sq0idb-REPLACE_ME'
-const LOCATION_ID = import.meta.env.VITE_SQUARE_LOCATION_ID || 'REPLACE_ME'
+import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
 
 export default function PaymentModal({ plan, onClose }) {
+  const stripe = useStripe()
+  const elements = useElements()
   const [step, setStep] = useState('info') // 'info' | 'pay' | 'success' | 'error'
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
@@ -17,30 +16,53 @@ export default function PaymentModal({ plan, onClose }) {
     setStep('pay')
   }
 
-  const handlePayment = async (token) => {
+  const handlePayment = async (e) => {
+    e.preventDefault()
+    if (!stripe || !elements) return
+
     setLoading(true)
     setErrorMsg('')
+
     try {
+      // Create Payment Intent on backend
       const res = await fetch('/api/create-payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          sourceId: token.token,
           amount: amountCents,
           planName: plan.title,
           patientName: form.name,
           patientEmail: form.email,
         }),
       })
+
       const data = await res.json()
-      if (data.success) {
+      if (!data.clientSecret) {
+        throw new Error(data.error || 'Failed to create payment intent')
+      }
+
+      // Confirm payment with Stripe
+      const { error, paymentIntent } = await stripe.confirmCardPayment(data.clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            name: form.name,
+            email: form.email,
+          },
+        },
+      })
+
+      if (error) {
+        setErrorMsg(error.message || 'Payment failed.')
+        setStep('error')
+      } else if (paymentIntent.status === 'succeeded') {
         setStep('success')
       } else {
-        setErrorMsg(data.error || 'Payment failed.')
+        setErrorMsg('Payment processing failed. Please try again.')
         setStep('error')
       }
-    } catch {
-      setErrorMsg('Network error. Please try again.')
+    } catch (err) {
+      setErrorMsg(err.message || 'Network error. Please try again.')
       setStep('error')
     }
     setLoading(false)
@@ -90,52 +112,44 @@ export default function PaymentModal({ plan, onClose }) {
                 Continue to Payment →
               </button>
               <p className="text-center text-gray-400 text-xs flex items-center justify-center gap-1">
-                🔒 Secured by Square • HIPAA Compliant
+                🔒 Secured by Stripe • HIPAA Compliant
               </p>
             </form>
           )}
 
           {/* Step 2: Payment */}
           {step === 'pay' && (
-            <div>
+            <form onSubmit={handlePayment}>
               <div className="flex items-center gap-2 mb-4">
-                <button onClick={() => setStep('info')} className="text-[#1a6fb5] text-sm hover:underline">← Back</button>
+                <button type="button" onClick={() => setStep('info')} className="text-[#1a6fb5] text-sm hover:underline">← Back</button>
                 <h4 className="font-bold text-gray-800">Payment Details</h4>
               </div>
-              <PaymentForm
-                applicationId={APP_ID}
-                locationId={LOCATION_ID}
-                cardTokenizeResponseReceived={handlePayment}
-                createPaymentRequest={() => ({
-                  countryCode: 'US',
-                  currencyCode: 'USD',
-                  total: { amount: String(amountCents / 100), label: plan.title },
-                })}
-              >
-                <CreditCard
-                  buttonProps={{
-                    css: {
-                      backgroundColor: '#1a6fb5',
-                      fontSize: '16px',
-                      fontWeight: 'bold',
-                      color: 'white',
-                      borderRadius: '12px',
-                      padding: '12px',
-                      width: '100%',
-                      marginTop: '12px',
+              <div className="mb-4 p-4 border border-gray-200 rounded-xl bg-gray-50">
+                <CardElement
+                  options={{
+                    style: {
+                      base: {
+                        fontSize: '16px',
+                        color: '#424770',
+                        '::placeholder': {
+                          color: '#aab7c4',
+                        },
+                      },
+                      invalid: {
+                        color: '#9e2146',
+                      },
                     },
                   }}
-                >
-                  {loading ? 'Processing...' : `Pay ${plan.displayPrice}`}
-                </CreditCard>
-                <div className="my-3 text-center text-gray-400 text-sm">— or pay with —</div>
-                <GooglePay />
-                <ApplePay />
-              </PaymentForm>
+                />
+              </div>
+              <button type="submit" disabled={!stripe || loading}
+                className={`w-full ${loading ? 'bg-gray-400' : 'bg-[#1a6fb5] hover:bg-[#0d4a8a]'} text-white font-bold py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-md disabled:cursor-not-allowed`}>
+                {loading ? 'Processing...' : `Pay ${plan.displayPrice}`}
+              </button>
               <p className="text-center text-gray-400 text-xs mt-3 flex items-center justify-center gap-1">
-                🔒 PCI-compliant • Powered by Square
+                🔒 PCI-compliant • Powered by Stripe
               </p>
-            </div>
+            </form>
           )}
 
           {/* Success */}

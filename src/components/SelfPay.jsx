@@ -96,9 +96,9 @@ export default function SelfPay() {
             <span className="text-gray-300">|</span>
             <span className="flex items-center gap-2 text-gray-600 text-sm">🏥 <span className="font-semibold">HIPAA Compliant</span></span>
             <span className="text-gray-300">|</span>
-            <span className="flex items-center gap-2 text-gray-600 text-sm">💳 <span className="font-semibold">Powered by Square</span></span>
+            <span className="flex items-center gap-2 text-gray-600 text-sm">💳 <span className="font-semibold">Powered by Stripe</span></span>
             <span className="text-gray-300">|</span>
-            <span className="flex items-center gap-2 text-gray-600 text-sm">🍎 <span className="font-semibold">Apple & Google Pay</span></span>
+            <span className="flex items-center gap-2 text-gray-600 text-sm">🔐 <span className="font-semibold">Secure & Encrypted</span></span>
           </div>
         </div>
       </div>
