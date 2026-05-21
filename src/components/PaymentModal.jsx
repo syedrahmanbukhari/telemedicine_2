@@ -106,10 +106,10 @@ export default function PaymentModal({ plan, onClose }) {
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}>
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md relative animate-scaleIn overflow-hidden">
+      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md relative animate-scaleIn overflow-hidden max-h-[90vh] flex flex-col">
 
         {/* Header */}
-        <div className="p-6 pb-4" style={{ background: 'linear-gradient(135deg, #1a6fb5, #2ecc71)' }}>
+        <div className="p-6 pb-4 flex-shrink-0" style={{ background: 'linear-gradient(135deg, #1a6fb5, #2ecc71)' }}>
           <button onClick={onClose}
             className="absolute top-4 right-4 text-white/80 hover:text-white text-2xl transition-colors duration-200">✕</button>
           <div className="text-white">
@@ -119,7 +119,7 @@ export default function PaymentModal({ plan, onClose }) {
           </div>
         </div>
 
-        <div className="p-6">
+        <div className="p-6 overflow-y-auto flex-1">
           {/* Step 1: Patient Info */}
           {step === 'info' && (
             <form onSubmit={handleInfoSubmit} className="space-y-4">
