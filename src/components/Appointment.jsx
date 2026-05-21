@@ -32,7 +32,7 @@ export default function Appointment() {
           <p className="text-white/80 text-lg">Fill out the form and we'll get back to you within 24 hours</p>
         </div>
         <form ref={formRef} onSubmit={handleSubmit} className="reveal bg-white rounded-3xl shadow-2xl p-8">
-          <input type="hidden" name="_replyto" value="bukhari78615@gmail.com" />
+          <input type="hidden" name="_replyto" value="growth@telemedchecks.com" />
           <input type="hidden" name="_subject" value="New Appointment Request - Telemedicine Wellness LLC" />
           <div className="grid sm:grid-cols-2 gap-6 mb-6">
             <div><label className="block text-gray-700 font-semibold mb-2">First Name *</label>
