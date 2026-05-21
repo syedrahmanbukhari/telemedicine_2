@@ -11,6 +11,24 @@ export default function PaymentModal({ plan, onClose }) {
 
   const amountCents = plan.amountCents
 
+  // Check if Stripe is loaded
+  if (!stripe || !elements) {
+    return (
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+        style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}>
+        <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md p-6 text-center">
+          <div className="text-6xl mb-4">⚠️</div>
+          <h3 className="text-xl font-black text-gray-800 mb-2">Payment Not Available</h3>
+          <p className="text-gray-500 text-sm mb-6">Stripe is not properly configured. Please check your environment variables.</p>
+          <button onClick={onClose}
+            className="bg-gray-100 text-gray-700 font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105">
+            Close
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   const handleInfoSubmit = (e) => {
     e.preventDefault()
     setStep('pay')
