@@ -7,7 +7,16 @@ export default function PaymentModal({ plan, onClose }) {
   const [step, setStep] = useState('info') // 'info' | 'pay' | 'success' | 'error'
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
-  const [form, setForm] = useState({ name: '', email: '', phone: '' })
+  const [form, setForm] = useState({ 
+    name: '', 
+    email: '', 
+    phone: '',
+    address: '',
+    city: '',
+    state: '',
+    postalCode: '',
+    country: 'US'
+  })
 
   const amountCents = plan.amountCents
 
@@ -66,6 +75,14 @@ export default function PaymentModal({ plan, onClose }) {
           billing_details: {
             name: form.name,
             email: form.email,
+            phone: form.phone,
+            address: {
+              line1: form.address,
+              city: form.city,
+              state: form.state,
+              postal_code: form.postalCode,
+              country: form.country,
+            },
           },
         },
       })
@@ -123,6 +140,32 @@ export default function PaymentModal({ plan, onClose }) {
                 <label className="block text-gray-600 text-sm font-medium mb-1">Phone</label>
                 <input type="tel" placeholder="702-000-0000"
                   value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })}
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#1a6fb5] transition-all duration-200" />
+              </div>
+              <div>
+                <label className="block text-gray-600 text-sm font-medium mb-1">Address *</label>
+                <input type="text" required placeholder="123 Main St"
+                  value={form.address} onChange={e => setForm({ ...form, address: e.target.value })}
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#1a6fb5] transition-all duration-200" />
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-gray-600 text-sm font-medium mb-1">City *</label>
+                  <input type="text" required placeholder="Las Vegas"
+                    value={form.city} onChange={e => setForm({ ...form, city: e.target.value })}
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#1a6fb5] transition-all duration-200" />
+                </div>
+                <div>
+                  <label className="block text-gray-600 text-sm font-medium mb-1">State *</label>
+                  <input type="text" required placeholder="NV"
+                    value={form.state} onChange={e => setForm({ ...form, state: e.target.value })}
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#1a6fb5] transition-all duration-200" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-gray-600 text-sm font-medium mb-1">Postal Code *</label>
+                <input type="text" required placeholder="89101"
+                  value={form.postalCode} onChange={e => setForm({ ...form, postalCode: e.target.value })}
                   className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#1a6fb5] transition-all duration-200" />
               </div>
               <button type="submit"
