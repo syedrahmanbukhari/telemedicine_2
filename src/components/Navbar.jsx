@@ -29,9 +29,9 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-white transition-all duration-300"
       style={{ boxShadow: scrolled ? '0 4px 20px rgba(0,0,0,0.1)' : '0 1px 4px rgba(0,0,0,0.08)' }}>
       <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-        <div style={{ overflow: 'hidden', width: 180, height: 56 }}>
+        <div style={{ display: 'flex', alignItems: 'center', height: 56 }}>
           <img src="/logo.png" alt="Telemedicine Wellness LLC"
-            style={{ height: 56, width: 'auto', transform: 'scale(2.8)', transformOrigin: 'left center' }} />
+            style={{ height: 56, width: 'auto', objectFit: 'contain' }} />
         </div>
 
         <div className="hidden md:flex items-center gap-6">
